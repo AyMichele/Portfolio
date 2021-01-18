@@ -6,18 +6,18 @@ import * as serviceWorker from './serviceWorker';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { createStore, combineReducers } from 'redux';
 import {Provider} from 'react-redux'
-import {selectionReducer} from './store/reducers/startReducer';
-import {gameSelectionReducer} from './store/reducers/gameReducer';
-
+import {selectionReducer} from './store/reducers/selectionReducer';
+import {projectSelectionReducer} from './store/reducers/projectSelectionReducer';
 
 
 const rootReducer = combineReducers({
-  game:  gameSelectionReducer, 
-  start: selectionReducer,
+  project:  projectSelectionReducer, 
+  selection: selectionReducer,
 })
 
 const store = createStore(rootReducer);
 console.log(store.getState())
+
 
 ReactDOM.render(<Provider store={store}>
   <App />

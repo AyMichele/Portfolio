@@ -1,0 +1,12 @@
+.overlayer{
+    opacity: 1;
+    border: 13px solid white;
+    width: 686px;
+    height: 487px; 
+    position: absolute;
+    z-index: 4;
+    margin-top: -33px;
+    margin-left: -12.5px;
+    padding: 20px;
+}
+

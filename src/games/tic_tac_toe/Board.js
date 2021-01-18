@@ -1,6 +1,6 @@
 import React from "react";
 import Square from "./Square";
-
+import './TicTacToeStyle.css'
 
 
 const Board = ({ squares, onClick }) => (

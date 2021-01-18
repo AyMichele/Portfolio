@@ -1,64 +1,66 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {selectedGames} from '../store/actions';
-import {startSelected} from '../store/actions';
-import  SelectionOfGames  from './selectionOfGames';
-import { StartSelection } from './startSelection';
+import { connect } from 'react-redux';
+import { projectSelected } from '../store/actions';
+import { aboutMeSelected } from '../store/actions';
+import { contactSelected } from '../store/actions';
+import ProjectSelection from './projectSelection';
+import AboutMeSection from './aboutMe';
+import ContactSection from './ContactSection';
+import './stylings/selectionMaskStyle.css'
 
-const selecetionStyle = {
-  border: "2px solid black",
-  height: "400px"
-}
-
-const selectionItemStyle = {
-  height : "150px",
-  border: "2px solid black",
-  marginTop: "120px",
-  marginLeft: "50px",
-
-}
-
-const itemHeaderStyle = {
-  marginTop: "30%"
-}
-
-function Selection(props) { 
-  if(props.startSelected){
-    return(
+function Selection(props) {
+  let selectedSection = undefined;
+  if (props.showAboutMeSection) {
+    selectedSection =
       <div>
-        <StartSelection  selectedGames = {props.selectedGames} />
+        <AboutMeSection projectSelected={props.aboutMeSelected} contactSelected={props.contactSelected}/>
       </div>
-    );
-  }if(props.gameSelected){
-    return(
+  } if (props.showProjectSection) {
+    selectedSection =
       <div>
-       <SelectionOfGames selectedGames = {props.selectedGames} />
+        <ProjectSelection projectSelected={props.projectSelected} />
       </div>
-    );
+  } if (props.showContactSection) {
+    selectedSection =
+      <div>
+        <ContactSection projectSelected={props.contactSelected} />
+      </div>
   }
+  return (
+    <div>
+      <div className="navBar">
+        <button onClick={props.contactSelected} className="navButtonStyle">Contacts</button>
+        <button onClick={props.projectSelected} className="navButtonStyle">Projects</button>
+        <button onClick={props.aboutMeSelected} className="navButtonStyle">About Me</button>
+      </div>
+      {selectedSection}
+    </div>
+  );
+
 }
 
 
 const mapStateToProps = state => {
   return {
-    gameSelected: state.start.gameSelected,
-    algorithmSelected: state.start.algorithmSelected,
-    otherSelected: state.start.otherSelected,
-    startSelected: state.start.startSelected,
+    showProjectSection: state.selection.showProjectSection,
+    showAboutMeSection: state.selection.showAboutMeSection,
+    showContanctSection: state.selection.showContanctSection,
   }
 }
 
 
 
-  const mapDispatchToProps = dispatch => {
-    return {
-      selectedGames: () => dispatch(selectedGames()),
-     }
+const mapDispatchToProps = dispatch => {
+  return {
+    projectSelected: () => dispatch(projectSelected()),
+    aboutMeSelected: () => dispatch(aboutMeSelected()),
+    contactSelected: () => dispatch(contactSelected()),
   }
-  
- export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Selection)
-  
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Selection)
+
 

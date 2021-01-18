@@ -1,0 +1,70 @@
+.introConntainer {
+  width: 350px;
+  height: 330px;
+  margin-left: 5%;
+  margin-top: 50px;
+  padding: 8px;
+  color: #4d4d4d;
+  box-shadow: 10px 5px 5px grey;
+  border-radius: 10px;
+  border: 1px solid #ff0066;
+}
+
+.introHeader {
+  color: black;
+  border-bottom: 2px solid #ff0066;
+  padding-bottom: 12px;
+}
+
+.head {
+  position: relative;
+  margin-top: 5%;
+}
+
+.me {
+  background-image: url("./me.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+
+.me-container{
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  width: 350px;
+  height: 400px
+}
+
+
+.quest{
+  font-size: 200px;
+  position: relative;
+  margin-top: -200px;
+}
+
+
+.contactLink{
+  background: transparent;
+  color: #ff0066;
+  border: none;
+  outline: none;
+}
+
+.contactLink:focus{
+  border: none;
+  outline: none;
+}
+
+.contact-container{
+  display: flex;
+  position: relative;
+  margin-top: -50px;
+  height: 20px;
+  width: 420px;
+}

@@ -1,0 +1,86 @@
+.calcButton {
+    outline: none;
+    border: none;
+    box-shadow: 5px 0px 0px 0px #404040;
+    background-color:#d9d9d9;
+    color: #737373;
+    width: 30px;
+    height: 50px;
+    margin: 5px;
+}
+
+.calcButton:active{
+    box-shadow: inset 5px 5px 0px 0px #666666; 
+    border: 2px solid #d9d9d9;
+}
+
+.calcButton:focus {
+    outline: none;
+    border: none;
+}
+
+.textField {
+    outline: none;
+    border: none;
+    box-shadow: inset 4px 2px 0px 0px #666666; 
+    color: lightslategrey;
+}
+
+
+.calculator{
+    outline: none;
+    border: none;
+    box-shadow: 7px 0px 0px 0px #110033;
+    border: 2px solid #110033;
+}
+
+#equalSign{
+    background-color:#80ffc1;
+    box-shadow: 4px 0px 0px 0px #00b35c;
+}
+
+#equalSign:active{
+    box-shadow: inset 4px 4px 0px 0px #00b35c; 
+    border: 2px solid #00b35c;
+}
+
+
+
+
+#clear{
+    background-color: #ff6666;
+    box-shadow: 4px 0px 0px 0px #660000;
+    color: #737373;
+    outline: none;
+    border: none;
+}
+
+#clear:focus{
+    outline: none;
+    border: none;
+}
+
+#clear:active{
+    box-shadow: inset 1px 1px 0px 0px #660000; 
+    border: 2px solid #ff6666;
+}
+
+
+
+#delete{
+    background-color:#ff9980;
+    box-shadow: 3px 0px 0px 0px#b32400;
+    color: #737373; 
+    outline: none;
+    border: none;
+}
+
+#delete:focus{
+    outline: none;
+    border: none;
+}
+
+#delete:active{
+    box-shadow: inset 2px 2px 0px 0px #b32400; 
+    border: 2px solid #ff9980;
+}

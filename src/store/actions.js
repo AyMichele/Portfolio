@@ -1,31 +1,27 @@
-import {GAMES_SELECT} from './actionTypes';
-import {ALGORITHMS_SELECT} from './actionTypes';
-import {OTHERS_SELECT} from './actionTypes';
-import {START_SELECT} from './actionTypes';
+import {PROJECT_SELECT}from './actionTypes';
+import {ABOUT_ME_SELECT} from './actionTypes';
 import {TTT_SELECT} from './actionTypes';
-import {SNAKE_SELECT} from './actionTypes';
+import {CONTACT_SELECT} from './actionTypes';
+import {SHOW_SNAKE} from './actionTypes';
+import {SHOW_CALC} from './actionTypes';
+import {SHOW_PATH_FIND} from './actionTypes';
 
-const selectedGames = () => {
+
+const projectSelected = () => {
     return  {
-        type: GAMES_SELECT,
+        type: PROJECT_SELECT,
     }
 }
 
-const selectedAlgorithms = () => {
+const aboutMeSelected = () => {
     return  {
-        type: ALGORITHMS_SELECT,
+        type: ABOUT_ME_SELECT,
     }
 }
 
-const selectedOthers = () => {
+const contactSelected = () => {
     return  {
-        type: OTHERS_SELECT,
-    }
-}
-
-const selectedStart = () => {
-    return  {
-        type: START_SELECT,
+        type: CONTACT_SELECT,
     }
 }
 
@@ -35,17 +31,31 @@ const selectedTTT = () => {
     }
 }
 
-const selectedSnake = () => {
+const activateSnake = () => {
     return  {
-        type: SNAKE_SELECT,
+        type: SHOW_SNAKE,
+    }
+}
+
+const activateCalc = () => {
+    return  {
+        type: SHOW_CALC,
+    }
+}
+
+const activatePathFinder = () => {
+    return  {
+        type: SHOW_PATH_FIND,
     }
 }
 
 
 
-export {selectedGames};
-export {selectedAlgorithms};
-export {selectedOthers};
-export {selectedStart};
+
+export {projectSelected};
+export {aboutMeSelected};
+export {contactSelected};
 export {selectedTTT};
-export {selectedSnake};
+export {activateSnake};
+export {activateCalc};
+export {activatePathFinder};

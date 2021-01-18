@@ -1,0 +1,9 @@
+.work{
+   background-image: url("./work.png");
+   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+   width: 500px;
+   height: 500px;
+   
+}

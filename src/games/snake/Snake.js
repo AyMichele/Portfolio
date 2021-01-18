@@ -1,111 +1,218 @@
-import React, {useEffect, useRef, useState}  from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import Field from './Field';
+import useInterval from './interval';
+import './snakeStyle.css'
 
 
 
+/*--------------------------------------------------------
+  -######################################################- 
+  -                        STYLE                         - 
+  -######################################################-  
+  --------------------------------------------------------*/
 
+
+const gameWindow = {
+    marginTop: "100px",
+}
+
+
+const leaveButtonStyle = {
+    height: "30px",
+    width: "70px",
+    fontSize: "12px",
+    fontWeight: "bolder",
+    border: "none",
+    zIndex: 6,
+    marginTop: "-50px"
+}
+
+const youDiedStyle = {
+    fontSize: "75px",
+    color: "#b30000",
+    marginLeft: "160px",
+    marginTop: "170px",
+}
+
+const buttonStyle = {
+    zIndex: 4,
+    position: "relative",
+    marginTop: "5px",
+    marginRight: "10px",
+}
+
+const pointsStyle = {
+    zIndex: 5,
+    position: "absolute",
+    marginTop: "-45px",
+}
+
+/*--------------------------------------------------------------------*/
 
 const Snake = (props) => {
-    const [history, setHistory] = useState(Array(new Array(40, 30)));  
-    const [foodCoos, setFoodCoos] = useState([Math.ceil(Math.random() * 41), Math.ceil(Math.random() * 31) ])
-    let direction = "right";
-    let speed = 300;
-    let interval = undefined;
+    const [snakePos, setSnakePos] = useState([[32, 22]]);
+    const [foodCoos, setFoodCoos] = useState([Math.ceil(Math.random() * 33), Math.ceil(Math.random() * 23)]) //[Math.ceil(Math.random() * 41), Math.ceil(Math.random() * 31) ]
+    const [isRunning, setIsRunning] = useState(false);
+    const [points, setPoints] = useState(0);
+    const [speed, setSpeed] = useState(280);
+    const [gameLost, setGameLost] = useState(false);
+    const [direction, setDirection] = useState("")
 
-    const startGame  = () => {
-        interval = setInterval(() => {
-          moveSnake(direction)
-        }, speed);
+
+    const gameLoop = () => {
+        loseGame(gameLost)
+        if (!gameLost) {
+            moveSnake()
+        }
     }
 
-    const stopGame  = () => {
-      interval = clearInterval(interval);
-    }
-  
-    const setFood = () => {
-      let copy = [0, 0];
-      copy[0] = Math.ceil(Math.random() * 31)
-      copy[1] = Math.ceil(Math.random() * 41); 
-      setFoodCoos(copy);
-      console.log(copy)
+    const startGame = () => {
+        setIsRunning(!isRunning)
     }
 
-
-
-  const moveSnake = (direction) => {
-    let copy = [...history];
-    switch(direction){
-      case "right":
-          copy[0][0] += 1;
-        break;
-      case "left":
-          copy[0][0] -= 1;
-        break;
-      case "up":
-          copy[0][1] -= 1;
-        break;
-      case "down":
-          copy[0][1] += 1;
-        break;
-        
+    const restartGame = () => {
+        setIsRunning(false);
+        setSpeed(280);
+        setPoints(0);
+        setSnakePos([[32, 22]]);
+        setFoodCoos([Math.ceil(Math.random() * 33), Math.ceil(Math.random() * 23)]);
+        setGameLost(false);
+        setDirection("")
     }
-    detectCollisison(copy[0], foodCoos);
-    setHistory(copy);
-  }
+
+    const loseGame = (gameLost) => {
+        if (gameLost) {
+            startGame();
+        }
+    }
+
+    function eatFood(oldSnake, copy, arrayOne, arrayTwo) {
+        if (arrayOne[0] === arrayTwo[0] && arrayOne[1] === arrayTwo[1]) {
+            setGameParams();
+            increaseSnake(oldSnake, copy);
+        }
+    }
+
+    const selfCollision = (snake) => {
+        for (let i = 1; i < snake.length; i++) {
+            if (snake[0][0] === snake[i][0] && snake[0][1] === snake[i][1]) {
+                setGameLost(true);
+            }
+        }
+    }
+
+    const outOfField = (arrayOne) => {
+        if (arrayOne[0][0] >= 66 || arrayOne[0][0] < 0 || arrayOne[0][1] >= 46 || arrayOne[0][1] < 0) {
+            setGameLost(true);
+        }
+    }
+
+    const increaseSnake = (oldSnake, copy) => {
+        copy.push(oldSnake);
+        return copy;
+    }
+
+    const maintainSnakeOrder = (arr) => {
+        for (let i = arr.length - 1; i > 0; i--) {
+            arr[i] = [...arr[i - 1]];
+        }
+        return arr;
+    }
+
+    const setGameParams = () => {
+        let copy = [0, 0];
+        copy[0] = Math.ceil(Math.random() * 31)
+        copy[1] = Math.ceil(Math.random() * 41);
+        setFoodCoos(copy);
+        setPoints(Math.ceil((points + 1.5) * 1.1 * 1.2))
+        if (speed - ((points / 2) * 0.02) < 140) {
+            setSpeed(140)
+        } else {
+            setSpeed(speed - ((points / 2) * 0.02))
+        }
+    }
 
 
+
+    const moveSnake = () => {
+        let copy = [...snakePos];
+        eatFood(copy[copy.length - 1], copy, copy[0], foodCoos);
+        copy = maintainSnakeOrder(copy)
+        switch (direction) {
+            case "right":
+                copy[0][0] += 1;
+                break;
+            case "left":
+                copy[0][0] -= 1;
+                break;
+            case "up":
+                copy[0][1] -= 1;
+                break;
+            case "down":
+                copy[0][1] += 1;
+                break;
+            default:
+                copy[0][0] += 1;
+        }
+        setSnakePos(copy);
+        outOfField(copy);
+        selfCollision(copy);
+    }
+
+    useInterval(() => {
+        gameLoop()
+    }, isRunning ? speed : null);
 
 
     useEffect(() => {
-      setInterval(interval)
-      return () => clearInterval(interval);
+        const handleDirection = (event) => {
+            switch (event.keyCode) {
+                case 38:
+                    event.preventDefault();
+                    setDirection("up")
+                    break;
+                case 37:
+                    event.preventDefault();
+                    setDirection("left")
+                    break;
+                case 39:
+                    event.preventDefault();
+                    setDirection("right")
+                    break;
+                case 40:
+                    event.preventDefault();
+                    setDirection("down")
+                    break;
+                default:
+                    setDirection("right")
+            }
+        };
+        window.addEventListener('keydown', handleDirection);
+        return () => {
+            window.removeEventListener('keydown', handleDirection);
+        };
     }, []);
 
 
-    useEffect(() => {
-      const handleDirection = (event) => {
-        switch(event.keyCode){
-          case 38:
-              event.preventDefault();
-              direction = "up"
-            break;
-          case 37:
-              event.preventDefault();
-              direction = "left"
-            break;
-          case 39:
-              event.preventDefault();
-              direction = "right"
-            break;
-          case 40:
-              event.preventDefault();
-              direction = "down"
-            break;
-        }
-      };
-      window.addEventListener('keydown', handleDirection);
-      return () => {
-        window.removeEventListener('keydown', handleDirection);
-      };
-  }, []);
-
-
-    function detectCollisison(arrayOne, arrayTwo){
-      if(arrayOne[0] == arrayTwo[0] && arrayOne[1] == arrayTwo[1]){
-        console.log("hi")
-        setFood();
-      }
-    }
-
+    let youDied = gameLost ? "YOU DIED" : null;
+    let startNStop = isRunning ? "STOP" : "START";
     return (
-        <div>
-            <Field gameField = {history } food = {foodCoos} />
-            <button onClick={startGame}>START</button>
-            <button onClick={stopGame}>STOP</button>
+        <div style={gameWindow}>
+            <div>
+                <button style={leaveButtonStyle} className="float-right position-relative" onClick={props.activateSnake}> back -></button>
+            </div>
+            <div>
+                <h5 style={pointsStyle}>Points {points}</h5>
+                <h5 style={pointsStyle}>Points {points}</h5>
+            </div>
+            <div className="overlayer"></div>
+            <div style={youDiedStyle} className="position-absolute">{youDied}</div>
+            <Field gameField={snakePos} food={foodCoos} />
+            <button style={buttonStyle} onClick={startGame}>{startNStop}</button>
+            <button style={buttonStyle} onClick={restartGame}>RESTART</button>
         </div>
     )
 
-    
 }
-
 export default Snake
