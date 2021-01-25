@@ -25,6 +25,7 @@
   background-image: url("./me.png");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
   width: 100%;
   height: 100%;
   position: relative;
@@ -67,4 +68,61 @@
   margin-top: -50px;
   height: 20px;
   width: 420px;
+}
+
+.contact-div{
+  height: 300px;
+  width: 75px;
+  position: absolute;
+  top: 200px;
+  right: -75px;
+  transition: all .7s  ease-in-out; 
+}
+
+.show-contact-div{
+  height: 300px;
+  width: 75px;
+  position: absolute;
+  top: 200px;
+  right: 0px;
+  transition: all .7s  ease-in-out; 
+}
+
+.linkedin{
+  background-image: url("./link.png");
+  background-position: center;
+  background-size: cover;
+  width: 75px;
+  height: 75px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.github{
+  background: url("./git.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width:  75px;
+  height: 75px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.mail{
+  background-image: url("./mail.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width:  75px;
+  height: 75px;
+  position: relative;
+}
+
+
+.link:hover{
+  position: relative;
+  right: 3px;
+  transition: all .7s  ease-in-out; 
+  cursor: pointer;
 }

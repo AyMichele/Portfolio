@@ -8,7 +8,6 @@ import PathFinder from '../algorithms/pathfinder/PathFinder';
 import TicTacToe from '../games/tic_tac_toe/Tic_Tac_Toe';
 import Snake from '../games/snake/Snake';
 import Calculator from '../other/calculator/Calculator';
-import './stylings/projectStylings.css'
 
 
 
@@ -22,12 +21,12 @@ const projectOne = {
   height: "175px",
   width: "200px",
   margin: "20px",
-  border: "none",
   outline: "none",
   justifyContent: "center",
   borderRadius: "5px",
-  color: "white",
-  backgroundColor: "#4dffa6"
+  color: "#4dffa6",
+  border: "2px solid #4dffa6",
+  backgroundColor: "white"
 
 }
 
@@ -35,13 +34,38 @@ const projectTwo = {
   height: "175px",
   width: "200px",
   margin: "20px",
-  border: "none",
   outline: "none",
   justifyContent: "center",
   borderRadius: "5px",
-  color: "white",
-  backgroundColor: "#66ccff",
+  color: "#66ccff",
+  border: "2px solid #66ccff",
+  backgroundColor: "white"
 
+}
+
+const projectThree = {
+  height: "175px",
+  width: "200px",
+  margin: "20px",
+  outline: "none",
+  justifyContent: "center",
+  borderRadius: "5px",
+  color: "#ff3333",
+  border: "2px solid #ff3333",
+  backgroundColor: "white"
+}
+
+
+const projectFour = {
+  height: "175px",
+  width: "200px",
+  margin: "20px",
+  outline: "none",
+  justifyContent: "center",
+  borderRadius: "5px",
+  color: "#6600ff",
+  border: "2px solid #6600ff",
+  backgroundColor: "white"
 }
 
 
@@ -90,7 +114,7 @@ function ProjectSelection(props) {
             -######################################################-  
             --------------------------------------------------------*/}
 
-          <button onClick={props.activateCalc} style={projectTwo} >
+          <button onClick={props.activateCalc} style={projectThree} >
             <h4 style={itemHeaderStyle} >CALCULATOR</h4>
           </button>
 
@@ -101,7 +125,7 @@ function ProjectSelection(props) {
             -######################################################-  
             --------------------------------------------------------*/}
 
-          <button onClick={props.activatePathFinder} style={projectTwo} >
+          <button onClick={props.activatePathFinder} style={projectFour} >
             <h4 style={itemHeaderStyle} >PATH FINDER</h4>
           </button>
 

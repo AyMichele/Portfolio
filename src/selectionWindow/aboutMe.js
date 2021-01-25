@@ -1,7 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { contactSelected } from '../store/actions';
 import './stylings/aboutMeStyle.css'
+
+
+
+const showContact = () => {
+  let contact = document.getElementById("contacts")
+  if (contact.className === "contact-div") {
+    contact.className = "show-contact-div";
+  } else if (contact.className === "show-contact-div") {
+    contact.className = "contact-div";
+  }
+}
+
 
 function AboutMeSection(props) {
   console.log(props)
@@ -9,7 +19,7 @@ function AboutMeSection(props) {
     // --------------- CONTAINER---------->
     <div className="">
       <div className="text-center head">
-        <h1>Hi, i´m Michele Ayadi</h1>
+        <h1>Hi, I´m Michele Ayadi</h1>
         <h6>My goal is to become a Fullstack Web developer...</h6>
       </div>
       <div className="text-center introConntainer">
@@ -28,31 +38,23 @@ function AboutMeSection(props) {
         <p className="quest">?</p>
 
         <div className="contact-container">
-          <p className="m-1">How does your future employee look?</p> 
-          <button Click={props.contactSelected} className="contactLink m-1">Contact Me</button>
+          <p className="m-1">How does your future employee look?</p>
+          <button onClick={showContact} className="contactLink m-1">Contact Me</button>
         </div>
+      </div>
+      <div className="contact-div" id="contacts">
+        <a href={"https://www.linkedin.com/in/michele-ayadi-6673b61a0/"}target={"#"}><div className="linkedin link" ></div></a>
+        <a href={"https://github.com/AyMichele"}target={"#"}> <div className="github link"></div></a>
+        <a href={"mailto:michele.ayadi@gmail.com"}><div className="mail link"></div></a>
+
       </div>
     </div>
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    showContactSection: state.selection.showContactSection,
-  }
-}
+
+export default AboutMeSection;
 
 
-
-const mapDispatchToProps = dispatch => {
-  return {
-    contactSelected: () => dispatch(contactSelected()),
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AboutMeSection)
 
 

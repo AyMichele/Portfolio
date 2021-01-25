@@ -20,16 +20,10 @@ function Selection(props) {
       <div>
         <ProjectSelection projectSelected={props.projectSelected} />
       </div>
-  } if (props.showContactSection) {
-    selectedSection =
-      <div>
-        <ContactSection projectSelected={props.contactSelected} />
-      </div>
   }
   return (
     <div>
       <div className="navBar">
-        <button onClick={props.contactSelected} className="navButtonStyle">Contacts</button>
         <button onClick={props.projectSelected} className="navButtonStyle">Projects</button>
         <button onClick={props.aboutMeSelected} className="navButtonStyle">About Me</button>
       </div>

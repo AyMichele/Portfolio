@@ -55,7 +55,7 @@ const Snake = (props) => {
     const [foodCoos, setFoodCoos] = useState([Math.ceil(Math.random() * 33), Math.ceil(Math.random() * 23)]) //[Math.ceil(Math.random() * 41), Math.ceil(Math.random() * 31) ]
     const [isRunning, setIsRunning] = useState(false);
     const [points, setPoints] = useState(0);
-    const [speed, setSpeed] = useState(280);
+    const [speed, setSpeed] = useState(260);
     const [gameLost, setGameLost] = useState(false);
     const [direction, setDirection] = useState("")
 
