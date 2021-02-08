@@ -61,6 +61,10 @@ const restartButtonStyleOn = {
   padding: "2px",
 }
 
+const gameStandStyle = {
+  position: "absolute",
+  left: "20px",
+}
 
 const xStyle = {
   borderRadius: "5px",
@@ -218,16 +222,18 @@ const TicTacToe = (props) => {
         <button style={leaveButtonStyle} className="float-right position-relative" onClick={props.selectedTTT}> back -></button>
       </div>
       {choose}
+      
       <h1 className="mb-3" >Tic Tac Toe</h1>
       <Board squares={history} onClick={handleClick} />
+      <div style={gameStandStyle}>
+        {gameStand}
+      </div>
       <div>
         <button style={twoPlayerMode ? gameModeStyle : buttonStyle} className="m-3 pl-1 pr-1" onClick={activateTwoPlayer}>2 PLAYER</button>
         <button style={twoPlayerMode ? buttonStyle : gameModeStyle} className="m-3 pl-1 pr-1" onClick={activateVsComputer}>VS COMPUTER</button>
         <button style={restart} className="m-3 pl-1 pr-1" onClick={restartGame}>RESTART</button>
       </div>
-      <div>
-        {gameStand}
-      </div>
+      
       <div>
         {yourPlayer}
       </div>

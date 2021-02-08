@@ -1,19 +1,37 @@
 import React from 'react';
-
-const style = {
-    width: "15px",
-    height: "15px",
-    background: "white",
-    border: "0.1px solid grey",
-    zIndex: 1,
-    position: "relative"
-  }
+import './pathFinderStyle.css'
 
 
 
-const PathTile = (value) =>{
+
+const PathTile = ({ value, onClick }) => {
+    let color = "";
+    let filler = ""
+    switch (value.name) {
+        case "S":
+            color = "M";
+            filler = value.name;
+            break;
+        case "G":
+            color = "C";
+            filler = value.name;
+            break;
+        case "O":
+            color = "O";
+            break;
+        case "P":
+            color = "G";
+            break;
+        case "wayBack":
+            color = "wayBack";
+            filler = "";
+            break;
+        default:
+            color = "W";
+    }
+
     return (
-        <div style={style}></div>
+        <div className={color} onClick={onClick}>{filler}</div>
     )
 }
 

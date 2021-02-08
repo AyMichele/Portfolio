@@ -1,9 +1,55 @@
-.work{
+.work {
    background-image: url("./work.png");
    background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
+   background-attachment: fixed;
+   background-position: center;
    width: 500px;
    height: 500px;
-   
+}
+
+.M {
+   background: grey;
+   color: black;
+}
+.G {
+   border: 1px solid green;
+   background: lime;
+   opacity: .5;
+   width: 19.9px;
+   height: 19.9px;
+   position: relative;
+   float: left;
+   text-align: center;
+   color: black;
+}
+
+.wayBack{
+   border: 1px solid red;
+   background: grey;
+   opacity: .5;
+   width: 19.9px;
+   height: 19.9px;
+   position: relative;
+   float: left;
+   text-align: center;
+   color: black;
+}
+
+.C {
+   background: yellow;
+   color: black;
+   text-align: center;
+}
+
+.O {
+   background: grey;
+}
+
+.W, .M, .O, .C{
+   width: 19.9px;
+   height: 19.9px;
+   position: relative;
+   float: left;
+   text-align: center;
+   border: 0.1px solid gainsboro;
 }
