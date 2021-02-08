@@ -149,13 +149,16 @@ const PathFinder = (props) => {
     return (
         <div>
             <div>
-                <button style={leaveButtonStyle} className="float-right" onClick={props.activatePathFinder}> back</button>
+                <button style={leaveButtonStyle} className="float-right mt-1" onClick={props.activatePathFinder}> back</button>
             </div>
-            <Field searchField={searchField} onClick={handleClick} />
-            <button onClick={setStart}>Start</button>
-            <button onClick={setGoal}>Goal</button>
-            <button onMouseDown={setObstacle}>Obstacle</button>
-            <button onClick={searchGoal}>Search</button>
+            <div className="mt-5">
+                <Field searchField={searchField} onClick={handleClick} />
+                <button onClick={setStart}>Start</button>
+                <button onClick={setGoal}>Goal</button>
+                <button onMouseDown={setObstacle}>Obstacle</button>
+                <button onClick={searchGoal}>Search</button>
+            </div>
+
         </div>
     )
 }
