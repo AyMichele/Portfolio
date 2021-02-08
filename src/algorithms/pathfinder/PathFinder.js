@@ -103,7 +103,6 @@ const PathFinder = (props) => {
         }
 
 
-
         if (found) {
             trackBack(cx, cy);
         }
@@ -149,7 +148,6 @@ const PathFinder = (props) => {
 
     return (
         <div>
-            <h1 style={headerStyle}>Work in Progress</h1>
             <div>
                 <button style={leaveButtonStyle} className="float-right" onClick={props.activatePathFinder}> back</button>
             </div>
