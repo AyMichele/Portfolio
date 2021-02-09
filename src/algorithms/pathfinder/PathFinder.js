@@ -36,7 +36,6 @@ const PathFinder = (props) => {
     const trackBack = (cx, cy) => {
         let copy = [...searchField];
         let back = false;
-
         while (!back) {
             let x = copy[cx][cy].predecessor[0];
             let y = copy[cx][cy].predecessor[1];
@@ -50,23 +49,24 @@ const PathFinder = (props) => {
             cx = x;
             cy = y;
         }
-
-
         setSearchField(copy)
+
+
+
     }
 
     const delay = (ms) => new Promise((resolve, reject) => setTimeout(resolve, ms));
 
     const searchGoal = () => {
-        let controller = [[1, -1], [0, -1], [1, 1], [-1, -1], [1, 0], [-1, 0], [-1, 1], [0, 1],];
-
-
+        let controller = [[1, 1], [-1, -1], [1, 0], [-1, 0], [-1, 1], [0, 1], [1, -1], [0, -1]];
         let found = false;
         let queue = [];
         queue.push([...mouseLoc]);
         let cx = 0;
         let cy = 0;
         let arr = [...searchField];
+
+
         while (!found) {
             let lastPos = queue.shift();
             for (let con = 0; con < controller.length; con++) {
@@ -93,15 +93,16 @@ const PathFinder = (props) => {
                     cy = y;
                     found = true;
                 }
+
                 setSearchField(arr);
+
             }
+
             if (queue.length < 1) {
                 break;
             }
 
-
         }
-
 
         if (found) {
             trackBack(cx, cy);

@@ -11,9 +11,15 @@
    background: grey;
    color: black;
 }
+@keyframes extendWay {
+   from {background-color: lime;}
+   to {background-color: rgb(0, 153, 255);}
+   from{border: 7px solid lime;}
+   to{border: 1px solid green;}
+ }
 .G {
    border: 1px solid green;
-   background: lime;
+   background: rgb(0, 153, 255);
    opacity: .5;
    width: 19.9px;
    height: 19.9px;
@@ -21,11 +27,20 @@
    float: left;
    text-align: center;
    color: black;
+   box-sizing: border-box;
+   animation-name: extendWay;
+   animation-duration: 1s;
 }
 
+@keyframes wayBack {
+   from {background-color: rgb(0, 153, 255)}
+   to {background-color: rgb(114, 12, 12) ;}
+ 
+ }
+
 .wayBack{
-   border: 1px solid red;
-   background: grey;
+   border: 1px solid grey;
+   background: rgb(114, 12, 12);
    opacity: .5;
    width: 19.9px;
    height: 19.9px;
@@ -33,6 +48,8 @@
    float: left;
    text-align: center;
    color: black;
+   animation-name: wayBack;
+   animation-duration: 2s;
 }
 
 .C {
