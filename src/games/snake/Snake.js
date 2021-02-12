@@ -35,12 +35,25 @@ const youDiedStyle = {
     marginTop: "170px",
 }
 
+
+
 const buttonStyle = {
     zIndex: 4,
-    position: "relative",
-    marginTop: "5px",
-    marginRight: "10px",
+    borderRadius: "2px",
+    background: "#8c8c8c",
+    color: "white",
+    border: "none ",
+    outline: "none ",
+    padding: "2px",
+    boxShadow: "-1px -1px 3px #404040",
+    marginLeft: "5px",
+    marginRight: "5px",
+    marginTop: "15px",
+    paddingLeft: "5px",
+    paddingRight: "5px",
 }
+
+
 
 const pointsStyle = {
     zIndex: 5,
