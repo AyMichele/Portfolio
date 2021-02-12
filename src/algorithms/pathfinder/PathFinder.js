@@ -31,6 +31,7 @@ const buttonStyle = {
     paddingLeft: "5px",
     paddingRight: "5px",
 }
+
 const buttonStyleCurrent = {
     borderRadius: "2px",
     background: "#8c8c8c",
@@ -102,7 +103,7 @@ const PathFinder = (props) => {
                 let y = lastPos[1] + controller[con][1];
                 // Wenn der Punkt außerhalb des Suchfeldes liegt verlass die Schleife
                 if (x > 22 || x < 0 || y > 33 || y < 0) {
-                    break;
+                    continue;
                 }
                 // Wenn der Punkt unbesucht ist
                 if (arr[x][y].fromStart === null) {
