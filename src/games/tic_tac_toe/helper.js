@@ -15,7 +15,7 @@ export function calculateWinner(squares, count) {
         return squares[a];
       }
     }
-  if(count == 9){
+  if(count === 9){
     return "TIE"
   }
  

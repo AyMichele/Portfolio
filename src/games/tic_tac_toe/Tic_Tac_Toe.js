@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import Board from './Board';
 import { setPlayer } from "./computer";
 import { calculateWinner } from './helper'
@@ -129,6 +129,7 @@ const TicTacToe = (props) => {
   const xO = xIsNext ? "X" : "O";
 
   const handleClick = (i) => {
+    
     let squares = [...history]
     if (winner || squares[i]) {
       return;
@@ -136,10 +137,12 @@ const TicTacToe = (props) => {
     squares[i] = xO;
     setHistory(squares)
     setXIsNext(!xIsNext);
-    setCount(count + 1)
+    setCount(count + 1);
+    
+  
   }
 
-  if (youAre != "" && xO != youAre && !winner) {
+  if (youAre !== "" && xO !== youAre && !winner) {
     let squares = [...history];
     squares[setPlayer(squares)] = xO
     setHistory(squares)
@@ -159,6 +162,7 @@ const TicTacToe = (props) => {
     setChoosePlayer(false);
     setYouAre("")
     restartGame();
+    console.log("twoplayer")
   }
 
   const activateVsComputer = () => {
@@ -166,12 +170,14 @@ const TicTacToe = (props) => {
     setChoosePlayer(true)
     setVSComputerMode(true)
     restartGame();
+    console.log("vsCom")
   }
 
   const playerChosen = (e) => {
     setChoosePlayer(false);
     setXIsNext((Math.random() > 0.5));
     setYouAre(e.target.value);
+    console.log("choose")
   }
 
   let gameStand = null;
@@ -214,15 +220,12 @@ const TicTacToe = (props) => {
     yourPlayer = <div></div>;
   }
 
-
-
   return (
     <div className="text-center" >
       <div>
         <button style={leaveButtonStyle} className="float-right position-relative" onClick={props.selectedTTT}> back -></button>
       </div>
       {choose}
-      
       <h1 className="mb-3" >Tic Tac Toe</h1>
       <Board squares={history} onClick={handleClick} />
       <div style={gameStandStyle}>
@@ -233,7 +236,6 @@ const TicTacToe = (props) => {
         <button style={twoPlayerMode ? buttonStyle : gameModeStyle} className="m-3 pl-1 pr-1" onClick={activateVsComputer}>VS COMPUTER</button>
         <button style={restart} className="m-3 pl-1 pr-1" onClick={restartGame}>RESTART</button>
       </div>
-      
       <div>
         {yourPlayer}
       </div>

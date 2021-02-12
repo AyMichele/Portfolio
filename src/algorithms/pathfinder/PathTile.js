@@ -16,8 +16,8 @@ const PathTile = ({ value, onClick }) => {
             color = "C";
             filler = value.name;
             break;
-        case "O":
-            color = "O";
+        case "OB":
+            color = "OB";
             break;
         case "P":
             color = "G";
